@@ -1,4 +1,4 @@
-name: Deploy Next.js site to Pages
+name: Deploy Vite site to Pages
 
 on:
   push:
@@ -27,23 +27,16 @@ jobs:
           node-version: "20"
           cache: "npm"
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        with:
-          static_site_generator: next
-
       - name: Install dependencies
         run: npm ci
 
-      - name: Build Next.js Static Export
-        env:
-          NEXT_PUBLIC_BASE_PATH: "/portfolio"
-        run: npx next build
+      - name: Build Vite App
+        run: npm run build
 
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: ./dist # Vite génère les fichiers dans 'dist' par défaut (contrairement à Next.js qui utilise 'out')
 
   deploy:
     environment:
