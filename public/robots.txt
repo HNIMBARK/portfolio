@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hnimbark.github.io/portfolio/sitemap.xml
